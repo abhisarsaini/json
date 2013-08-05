@@ -1,0 +1,5 @@
+#NOTE: This is an internal implementation file, its format can be changed without prior notice.
+#Thu Aug 01 12:45:34 IST 2013
+http\://repo.maven.apache.org/maven2/.lastUpdated=1375341334332
+default-http\://download.java.net/maven/2/.lastUpdated=1375341327196
+http\://download.java.net/maven/2/.error=Could not transfer artifact javax.faces\:jsf-api\:jar\:2.0 from/to java.net.m2 (http\://download.java.net/maven/2)\: No response received after 60000

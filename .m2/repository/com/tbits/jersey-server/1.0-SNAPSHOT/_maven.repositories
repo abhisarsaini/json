@@ -1,0 +1,5 @@
+#NOTE: This is an internal implementation file, its format can be changed without prior notice.
+#Fri Jul 26 11:18:45 IST 2013
+jersey-server-1.0-SNAPSHOT.pom>=
+jersey-server-1.0-SNAPSHOT.war>=
+jersey-server-1.0-SNAPSHOT.jar>=

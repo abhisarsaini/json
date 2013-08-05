@@ -1,0 +1,103 @@
+<project xsi:schemaLocation='http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd' xmlns='http://maven.apache.org/POM/4.0.0' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>au.net.ocean.maven.plugin</groupId>
+    <artifactId>maven-plugin-annotations</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0</version>
+    <name>Ocean Maven Plugin Annotations</name>
+
+    <description>
+        Java 5 annotation based implementation of Maven's Javadoc descriptor generation tags.
+    </description>
+
+    <url>http://maven.ocean.net.au/plugin/annotations/</url>
+    <inceptionYear>2007</inceptionYear>
+    <licenses>
+        <license>
+            <name>The Revised BSD Licence</name>
+            <url>http://www.ocean.net.au/licences/BSDLicence.txt</url>
+        </license>
+    </licenses>
+
+    <issueManagement>
+        <system>Jira</system>
+        <url>http://jira.ocean.net.au/browse/MPA</url>
+    </issueManagement>
+
+    <ciManagement>
+        <system>TeamCity</system>
+        <url>http://teamcity.ocean.net.au/viewType.html?buildTypeId=bt21</url>
+        <notifiers>
+            <notifier>
+                <type>email</type>
+                <configuration>
+                    <subscription-address>http://teamcity.ocean.net.au/profile.html?</subscription-address>
+                </configuration>
+                <sendOnError>true</sendOnError>
+                <sendOnFailure>true</sendOnFailure>
+                <sendOnSuccess>true</sendOnSuccess>
+                <sendOnWarning>true</sendOnWarning>
+            </notifier>
+            <notifier>
+                <type>jabber</type>
+                <configuration>
+                    <subscription-address>http://teamcity.ocean.net.au/profile.html?</subscription-address>
+                </configuration>
+                <sendOnError>true</sendOnError>
+                <sendOnFailure>true</sendOnFailure>
+                <sendOnSuccess>true</sendOnSuccess>
+                <sendOnWarning>true</sendOnWarning>
+            </notifier>
+        </notifiers>
+    </ciManagement>
+
+    <scm>
+        <connection>scm:svn:http://svn.ocean.net.au/maven-plugin-annotations/tags/maven-plugin-annotations-1.0</connection>
+        <developerConnection>scm:svn:http://svn.ocean.net.au/maven-plugin-annotations/tags/maven-plugin-annotations-1.0</developerConnection>
+        <url>http://fisheye.ocean.net.au/browse/maven-plugin-annotations/tags/maven-plugin-annotations-1.0</url>
+    </scm>
+
+    <parent>
+        <groupId>au.net.ocean</groupId>
+        <artifactId>maven</artifactId>
+        <version>1.8</version>
+    </parent>
+
+    <repositories>
+        
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+        <uniqueVersion>false</uniqueVersion>
+        <id>maven2.dev.java.net</id>
+        <name>JavaNet Release Repository</name>
+        <url>java-net:/maven2-repository/trunk/www/repository/</url>
+        </repository>
+    </distributionManagement>
+
+    <properties>
+        <licence>BSD</licence>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-site-plugin</artifactId>
+            </plugin>
+        </plugins>
+        <extensions>
+        <extension>
+        <groupId>org.jvnet.wagon-svn</groupId>
+        <artifactId>wagon-svn</artifactId>
+        <version>1.8</version>
+        </extension>
+        </extensions>
+    </build>
+
+</project>

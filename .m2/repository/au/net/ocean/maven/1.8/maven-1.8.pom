@@ -1,0 +1,345 @@
+<project xsi:schemaLocation='http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd' xmlns='http://maven.apache.org/POM/4.0.0' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'>
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>au.net.ocean</groupId>
+    <artifactId>maven</artifactId>
+    <packaging>pom</packaging>
+    <version>1.8</version>
+    <name>Ocean Maven Configuration</name>
+    <url>http://maven.ocean.net.au/</url>
+
+    <issueManagement>
+        <system>Jira</system>
+        <url>http://jira.ocean.net.au/</url>
+    </issueManagement>
+
+    <organization>
+        <name>Ocean</name>
+        <url>http://www.ocean.net.au/</url>
+    </organization>
+        
+    <developers>
+        <developer>
+            <id>dwhitla</id>
+            <name>Dave Whitla</name>
+            <url>http://www.ocean.net.au/</url>
+            <roles>
+                <role>Maintainer</role>
+                <role>Developer</role>
+            </roles>
+            <timezone>+10</timezone>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:svn:http://svn.ocean.net.au/maven/tags/maven-1.8</connection>
+        <developerConnection>scm:svn:http://svn.ocean.net.au/maven/tags/maven-1.8</developerConnection>
+        <url>http://fisheye.ocean.net.au/browse/maven</url>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>snapshot.ocean.net.au</id>
+            <name>Ocean Snapshot Repository</name>
+            <url>dav:http://maven.ocean.net.au/snapshot</url>
+        </snapshotRepository>
+        <!--<repository>-->
+        <!--<id>release.ocean.net.au</id>-->
+        <!--<name>Ocean Release Repository</name>-->
+        <!--<url>dav:http://maven.ocean.net.au/release</url>-->
+        <!--</repository>-->
+        <repository>
+            <uniqueVersion>false</uniqueVersion>
+            <id>maven2.dev.java.net</id>
+            <name>JavaNet Release Repository</name>
+            <url>java-net:/maven2-repository/trunk/www/repository/</url>
+        </repository>
+        <!--<site>-->
+        <!--<id>maven.ocean.net.au</id>-->
+        <!--<name>Ocean MavenPlugins Web Site</name>-->
+        <!--<url>dav:http://maven.ocean.net.au/maven</url>-->
+        <!--</site>-->
+    </distributionManagement>
+
+    <repositories>
+        
+        
+        
+    </repositories>
+
+    <pluginRepositories>
+        
+        
+        
+    </pluginRepositories>
+
+    <modules>
+        <module>build-tools</module>
+    </modules>
+    
+    <properties>
+        <build.number>${user.name}</build.number>
+        <test.unit.skip>false</test.unit.skip>
+        <test.int.skip>false</test.int.skip>
+        <licence>Proprietary</licence>
+    </properties>
+
+    <build>
+        <finalName>${project.artifactId}-${project.version}-${build.number}</finalName>
+
+        <resources>
+            <!-- filter resources by default -->
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+                <includes>
+                    <include>*</include>
+                    <include>**/*</include>
+                </includes>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+
+        <testResources>
+            <!-- filter test-resources by default -->
+            <testResource>
+                <directory>${basedir}/src/test/resources</directory>
+                <includes>
+                    <include>*</include>
+                    <include>**/*</include>
+                </includes>
+                <filtering>true</filtering>
+            </testResource>
+        </testResources>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                    <compilerArguments>
+                        <nowarn/>
+                        <encoding>utf8</encoding>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.3</version>
+                <inherited>true</inherited>
+                <configuration>
+                    <skip>${test.unit.skip}</skip>
+                    <includes>
+                        <include>**/*UnitTest.java</include>
+                    </includes>
+                    <excludes>
+                        <exclude>**/*$*</exclude>
+                        <exclude>**/Abstract*Test.java</exclude>
+                    </excludes>
+                    <forkMode>once</forkMode>
+                    <childDelegation>false</childDelegation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>integration-tests</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <skip>${test.int.skip}</skip>
+                            <includes>
+                                <include>**/*IntegrationTest.java</include>
+                                <include>**/*WebTest.java</include>
+                            </includes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <inherited>true</inherited>
+                <configuration>
+                    <outputDirectory>${project.build.directory}/artifacts</outputDirectory>
+                    <archive>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                        <manifest>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                        <manifestEntries>
+                            <version>${project.version}</version>
+                            <url>${project.url}</url>
+                            <Implementation-Build>${build.number}</Implementation-Build>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.0.1</version>
+                <configuration>
+                    <outputDirectory>${project.build.directory}/artifacts</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <inherited>true</inherited>
+            </plugin>
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-checkstyle-plugin</artifactId>
+                    <version>2.2</version>
+                    <inherited>true</inherited>
+                    <configuration>
+                        <configLocation>ocean/checkstyle.xml</configLocation>
+                        <headerLocation>ocean/${licence}Licence.txt</headerLocation>
+                        <suppressionsFileExpression>checkstyle.suppressions.file</suppressionsFileExpression>
+                        <outputDirectory>${project.build.directory}/artifacts/checkstyle</outputDirectory>
+                        <enableRSS>false</enableRSS>
+                        <linkXRef>false</linkXRef>
+                        <enableRulesSummary>false</enableRulesSummary>
+                        <consoleOutput>true</consoleOutput>
+                        <failsOnError>false</failsOnError>
+                        <failsOnViolation>true</failsOnViolation>
+                        <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>pre-test-check</id>
+                            <phase>validate</phase>
+                            <goals>
+                                <goal>check</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <dependencies>
+                        <dependency>
+                            <groupId>au.net.ocean</groupId>
+                            <artifactId>build-tools</artifactId>
+                            <version>1.8</version>
+                        </dependency>
+                    </dependencies>
+                </plugin>
+                <!--<plugin>-->
+                    <!--<artifactId>maven-javadoc-plugin</artifactId>-->
+                    <!--<version>2.0</version>-->
+                    <!--<configuration>-->
+                        <!--<jarOutputDirectory>${project.build.directory}/artifacts</jarOutputDirectory>-->
+                    <!--</configuration>-->
+                    <!--<executions>-->
+                        <!--<execution>-->
+                            <!--<id>attach-javadocs</id>-->
+                            <!--<goals>-->
+                                <!--<goal>jar</goal>-->
+                            <!--</goals>-->
+                        <!--</execution>-->
+                    <!--</executions>-->
+                    <!--<inherited>true</inherited>-->
+                <!--</plugin>-->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <inherited>true</inherited>
+                    <configuration>
+                        <outputDirectory>${project.build.directory}/artifacts</outputDirectory>
+                        <archive>
+                            <addMavenDescriptor>false</addMavenDescriptor>
+                            <manifest>
+                                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                            <manifestEntries>
+                                <version>${project.version}</version>
+                                <url>${project.url}</url>
+                                <Implementation-Build>${build.number}</Implementation-Build>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ejb-plugin</artifactId>
+                    <inherited>true</inherited>
+                    <configuration>
+                        <jarName>artifacts/${project.build.finalName}</jarName>
+                        <ejbVersion>3.0</ejbVersion>
+                        <generateClient>true</generateClient>
+                        <archive>
+                            <addMavenDescriptor>false</addMavenDescriptor>
+                            <manifest>
+                                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                            <manifestEntries>
+                                <version>${project.version}</version>
+                                <url>${project.url}</url>
+                                <Implementation-Build>${build.number}</Implementation-Build>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.0.2</version>
+                    <inherited>true</inherited>
+                    <configuration>
+                        <warName>${project.build.finalName}</warName>
+                        <webappDirectory>${project.build.directory}/exploded</webappDirectory>
+                        <outputDirectory>${project.build.directory}/artifacts</outputDirectory>
+                        <primaryArtifact>true</primaryArtifact>
+                        <archive>
+                            <addMavenDescriptor>false</addMavenDescriptor>
+                            <manifest>
+                                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                            <manifestEntries>
+                                <version>${project.version}</version>
+                                <url>${project.url}</url>
+                                <Implementation-Build>${build.number}</Implementation-Build>
+                            </manifestEntries>
+                        </archive>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.0-beta-7</version>
+                    <inherited>true</inherited>
+                    <configuration>
+                        <addSchema>false</addSchema>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
+                        <resume>false</resume>
+                        <preparationGoals>clean install</preparationGoals>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav</artifactId>
+                <version>1.0-beta-2</version>
+            </extension>
+            <extension>
+                <groupId>org.jvnet.wagon-svn</groupId>
+                <artifactId>wagon-svn</artifactId>
+                <version>1.8</version>
+            </extension>
+        </extensions>
+
+    </build>
+
+</project>
