@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"    
+      xmlns:h="http://java.sun.com/jsf/html">
+ 
+    <h:head>
+    	<title> Employee information</title>
+    </h:head>
+ 
+    	<h:form>
+    		
+    	   <h:outputText value= "Name :      "></h:outputText>
+    	   <h:inputText value="#{employee.name}" label= "name"></h:inputText>
+    	   <br/>
+    	   <h:outputText value="Id : "></h:outputText>
+    	   <h:inputText value="#{employee.id}" label= "ID"></h:inputText>
+    	   <br/>
+    	   <h:outputText value="Designation : "></h:outputText>
+    	   <h:inputText value="#{employee.desig}" label= "Designation"></h:inputText>
+		   <br/>
+    	   <h:outputText value="Salary :      "></h:outputText>
+    	   <h:inputText value="#{employee.salary}" label= "Salary"></h:inputText>
+    	   <br/>
+    	   <h:outputText value="#{employee.msg}"></h:outputText>
+    	   <br/>
+    	   
+    	   
+    	   <h:commandButton value="Add" action="#{employee.addEmp()}"></h:commandButton>
+    	   <h:commandButton value="Back" action="#{employee.redirect()}"></h:commandButton>
+    	</h:form>
+  <!--   <h:body bgcolor="white">
+    	<h3>Employee information.</h3>
+    	<h4>Name: #{employee.name}</h4>
+    	<h4>Id: #{employee.id}</h4>
+    	<h4>Designation: #{employee.desig}</h4>
+    	<h4>Salary: #{employee.salary}</h4>
+    </h:body> -->
+</html>

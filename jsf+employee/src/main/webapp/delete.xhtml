@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"    
+      xmlns:h="http://java.sun.com/jsf/html">
+ 
+    <h:head>
+    	<title> Employee information </title>
+    </h:head>
+ 
+    	<h:form>
+    	   <h:outputText value= "Enter the id of the employee you want to delete :      "></h:outputText>
+    	   <h:inputText value="#{employee.uid}" label= "uid"></h:inputText>
+    	   <br/>
+    	   <br/>
+    	   <h:outputText value="#{employee.msg}"></h:outputText>
+    	   <br/>
+    	   <br/>
+    	   
+    	   
+    	   <h:commandButton value="Delete" action="#{employee.deleteEmp()}"></h:commandButton>
+    	   <h:commandButton value="Back" action="#{employee.redirect()}"></h:commandButton>
+    	</h:form>
+    	</html>
