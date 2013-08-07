@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"    
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+ 
+    <h:head>
+    	<title> Employee information</title>
+    </h:head>
+ 
+    	<h:form>
+    	    	<p:panel id="panel1" header="View Record" style="margin-bottom:10px;">  
+        <p:messages id="messages" />  
+        <h:panelGrid columns="3">  
+            <h:outputLabel for="uid" value="Enter the Id of the record to be viewed: " />  
+            <p:inputText id="uid"   
+                value="#{employee.uid}" required="false" label="Id">  
+                 
+            </p:inputText>  
+            <p:message for="uid" />  
+           </h:panelGrid>  
+   		 </p:panel>  
+   		 
+   		 <p:commandButton value="View" update="dataTable,display2" id="fetch"  
+             actionListener="#{employee.viewEmp()}" styleClass="ui-priority-primary"/> 
+          <br/> 
+		<p:dataTable id="dataTable" var="emp" value="#{employee.view}">  
+  
+        <f:facet name="header">  
+            Information  
+        </f:facet>  
+  
+        <p:column>  
+            <f:facet name="header">  
+                Id  
+            </f:facet>  
+  
+            <h:outputText value="#{emp.id}" />  
+  
+            <f:facet name="footer">  
+                Unique Id   
+            </f:facet>  
+        </p:column>  
+  
+        <p:column headerText="Name">  
+            <h:outputText value="#{emp.name}" />  
+        </p:column>  
+  
+        <p:column headerText="Designation">  
+            <h:outputText value="#{emp.desi}" />  
+        </p:column>  
+  
+        <p:column headerText="Salary" footerText="In Rs per annum">  
+            <h:outputText value="#{emp.salary}" />  
+        </p:column>  
+  
+        <f:facet name="footer">  
+        </f:facet>  
+  
+    </p:dataTable>    
+    <p:commandButton value="Back" action="#{employee.redirect()}"   
+            ajax="false" />  
+  
+   
+    <p:panel id="display2" header="Server Response" style="margin-top:10px;">  
+        <h:panelGrid columns="2">  
+       	   <br/>
+    	   <h:outputText value="#{employee.msg}"></h:outputText>
+    	   <br/>
+            
+        </h:panelGrid>  
+    </p:panel> 
+    	</h:form>
+
+</html>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"    
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+ 
+    <h:head>
+    	<title> Employee information</title>
+    </h:head>
+ 
+    	<h:form>
+    	    	<p:panel id="panel1" header="Update Record " style="margin-bottom:10px;">  
+        <p:messages id="messages" />  
+        <h:panelGrid columns="3">  
+            <h:outputLabel for="id" value="#{employee.makenull()} Enter the Id of the record whose information has to be updated: " />  
+            <p:inputText id="id"   
+                value="#{employee.uid}" required="true" label="Id">  
+                 
+            </p:inputText>  
+            <p:message for="id" />  
+           </h:panelGrid>  
+   		 </p:panel>  
+   		 
+   		 <p:commandButton value="Fetch" update="panel2,display1" id="fetch"  
+             actionListener="#{employee.viewEmp()}" styleClass="ui-priority-primary"/> 
+          <br/> 
+          <p:panel id="display1" header="Fetched Information" style="margin-top:10px;">  
+        <h:panelGrid columns="2">  
+       	   <br/>
+    	   <h:outputText value="#{employee.msg}"></h:outputText>
+    	   <br/>
+            
+        </h:panelGrid>  
+    </p:panel>    
+   		 <p:panel id="panel2" header="Enter new information" style="margin-bottom:10px;">  
+        <p:messages id="message" />  
+        <h:panelGrid columns="9">  
+  			
+  			<h:outputLabel for="name" value="Name: " />  
+            <p:inputText id="name"    
+                value="#{employee.name}" required="false" label="Name">  
+                 
+            </p:inputText>  
+            <p:message for="name" />  
+            
+           <h:outputLabel for="designation" value="Designation: " />  
+            <p:inputText id="designation"   
+                value="#{employee.desig}" required="false" label="Designation">  
+                 
+            </p:inputText>  
+            <p:message for="designation" />  
+            
+            <h:outputLabel for="salary" value="Salary: " />  
+            <p:inputText id="salary"   
+                value="#{employee.salary}" required="false" label="Salary">  
+                 
+            </p:inputText>  
+            <p:message for="salary" />  
+        </h:panelGrid>  
+    </p:panel>  
+  
+    <p:commandButton value="Update" update="panel2,display2" id="update"  
+             actionListener="#{employee.updateEmp()}" styleClass="ui-priority-primary"/>  
+  
+    <p:commandButton value="Back" action="#{employee.redirect()}"   
+            ajax="false" />  
+  
+   
+    <p:panel id="display2" header="Server Response" style="margin-top:10px;">  
+        <h:panelGrid columns="2">  
+       	   <br/>
+    	   <h:outputText value="#{employee.msg}"></h:outputText>
+    	   <br/>
+            
+        </h:panelGrid>  
+    </p:panel> 
+    	</h:form>
+
+</html>

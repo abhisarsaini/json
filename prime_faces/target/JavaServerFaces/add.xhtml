@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"    
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+ 
+    <h:head>
+    	<title> Employee information</title>
+    </h:head>
+ 
+    	<h:form id="form">
+    	<p:panel id="panel" header="New Record" style="margin-bottom:10px;">  
+        <p:messages id="messages" />  
+        <h:panelGrid columns="6">  
+            <h:outputLabel for="id" value="Id: " />  
+            <p:inputText id="id"   
+                value="#{employee.id}" required="false" label="Id">  
+                 
+            </p:inputText>  
+            <p:message for="id" />  
+  			
+  			<h:outputLabel for="name" value="Name: " />  
+            <p:inputText id="name"    
+                value="#{employee.name}" required="false" label="Name">  
+                 
+            </p:inputText>  
+            <p:message for="name" />  
+            
+           <h:outputLabel for="designation" value="Designation: " />  
+            <p:inputText id="designation"   
+                value="#{employee.desig}" required="false" label="Designation">  
+                 
+            </p:inputText>  
+            <p:message for="designation" />  
+            
+            <h:outputLabel for="salary" value="Salary: " />  
+            <p:inputText id="salary"   
+                value="#{employee.salary}" required="false" label="Salary">  
+                 
+            </p:inputText>  
+            <p:message for="salary" />  
+        </h:panelGrid>  
+    </p:panel>  
+  
+    <p:commandButton value="Add" update="panel,display" id="add"  
+             actionListener="#{employee.addEmp()}" styleClass="ui-priority-primary"/>  
+  
+    <p:commandButton value="Back" action="#{employee.redirect()}"   
+            ajax="false" />  
+  
+   
+    <p:panel id="display" header="Server Response" style="margin-top:10px;">  
+        <h:panelGrid columns="2">  
+       	   <br/>
+    	   <h:outputText value="#{employee.msg}"></h:outputText>
+    	   <br/>
+            
+        </h:panelGrid>  
+    </p:panel>  
+    	</h:form>
+ 
+</html>
